@@ -34,3 +34,4 @@ process index {
     """
 }
  
+index_ch.view()
