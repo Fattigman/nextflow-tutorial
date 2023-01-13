@@ -44,7 +44,7 @@ Channel
  * the index and the matched read files
  */
 process quantification {
-     
+    publishDir "quantification", mode: 'symlink'
     input:
     path index from index_ch
     tuple val(pair_id), path(reads) from read_pairs_ch
