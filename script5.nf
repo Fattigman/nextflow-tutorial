@@ -37,7 +37,7 @@ process index {
 
 Channel 
     .fromFilePairs( params.reads, checkIfExists:true )
-    .set { read_pairs_ch } 
+    .into { read_pairs_ch; read_pairs_ch2 } 
 
 /*
  * Run Salmon to perform the quantification of expression using
@@ -65,7 +65,7 @@ process fastqc {
     tag "FASTQC on $sample_id"
 
     input:
-    tuple val(sample_id), path(reads) from read_pairs_ch
+    tuple val(sample_id), path(reads) from read_pairs_ch2
 
     output:
     path("fastqc_${sample_id}_logs") into fastqc_ch
